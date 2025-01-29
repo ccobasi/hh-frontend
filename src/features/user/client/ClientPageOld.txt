@@ -1,0 +1,143 @@
+
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
+import { Box, Container, Link, Typography, Grid, Button } from "@mui/material";
+import { ClientFirstFeature } from "./Client";
+
+const ClientPage = ({ userId }) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  userId = user ? user.id : null;
+
+  return (
+    <Container component="main" maxWidth="md" sx={{ pl: { xs: 8, sm: 8, md: 6, lg: 2, } }}>
+      <ClientFirstFeature />
+
+
+      <Grid container spacing={2} sx={{ mt: { xs: 3, sm: 4, md: 5 } }}>
+        <Grid item xs={12}>
+          <Box>
+           
+      <Typography variant="h4" sx={{ 
+         
+         fontFamily: "Poppins",
+         fontWeight: "600",
+         fontSize: "12px",
+         lineHeight: "20.8px",
+       
+         letterSpacing: "1px",
+         textAlign: "start",
+         ml:'4%',
+         color: (theme) =>
+           theme.palette.mode === "light"
+             ? theme.palette.primary.lightModeHeroTitle
+             : theme.palette.primary.darkModeHeroTitle,
+         pt: "10px",
+         }}>
+            Projects
+         </Typography>
+            <Link
+              href="/create-project"
+              sx={{
+                textDecoration: 'none',
+                color: '#87CEEB',
+                display: 'block',
+                mt: 1,
+              }}
+            >
+              <Button variant="outlined" fullWidth sx={{ padding: { xs: '8px', sm: '10px', md: '12px' }, backgroundColor: "#87CEEB",ml:'4%', color: (theme) =>
+                  theme.palette.mode === "light"
+                    ? theme.palette.primary.lightModeHeroTitle
+                    : theme.palette.primary.darkModeHeroTitle, }}>
+                Create a Project
+              </Button>
+            </Link>
+          </Box>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Box>
+            
+      <Typography variant="h4" sx={{ 
+         
+         fontFamily: "Poppins",
+         fontWeight: "600",
+         fontSize: "12px",
+         lineHeight: "20.8px",
+       
+         letterSpacing: "1px",
+         textAlign: "start",
+         ml:'4%',
+         color: (theme) =>
+           theme.palette.mode === "light"
+             ? theme.palette.primary.lightModeHeroTitle
+             : theme.palette.primary.darkModeHeroTitle,
+         pt: "10px",
+         }}>
+            Disputes
+         </Typography>
+        
+            <Link
+              href="/dispute"
+              sx={{
+                textDecoration: 'none',
+                color: '#87CEEB',
+                display: 'block',
+                mt: 1,
+              }}
+            >
+              <Button variant="outlined" fullWidth sx={{ ml:'4%',padding: { xs: '8px', sm: '10px', md: '12px',ml:'4%' }, backgroundColor: "#87CEEB", color: (theme) =>
+                  theme.palette.mode === "light"
+                    ? theme.palette.primary.lightModeHeroTitle
+                    : theme.palette.primary.darkModeHeroTitle, }}>
+                Create Dispute
+              </Button>
+            </Link>
+          </Box>
+        </Grid>
+
+        <Grid item xs={12}>
+          <Box>
+            
+      <Typography variant="h4" sx={{ 
+         
+         fontFamily: "Poppins",
+         fontWeight: "600",
+         fontSize: "12px",
+         lineHeight: "20.8px",
+       
+         letterSpacing: "1px",
+         textAlign: "start",
+         ml:'4%',
+         color: (theme) =>
+           theme.palette.mode === "light"
+             ? theme.palette.primary.lightModeHeroTitle
+             : theme.palette.primary.darkModeHeroTitle,
+         pt: "10px",
+         }}>
+            Payment
+         </Typography>
+        
+            <Link
+              href="/payments/create"
+              sx={{
+                textDecoration: 'none',
+                color: '#87CEEB',
+                display: 'block',
+                mt: 1,
+              }}
+            >
+              <Button variant="outlined" fullWidth sx={{ml:'4%', padding: { xs: '8px', sm: '10px', md: '12px' }, backgroundColor: "#87CEEB", color: (theme) =>
+                  theme.palette.mode === "light"
+                    ? theme.palette.primary.lightModeHeroTitle
+                    : theme.palette.primary.darkModeHeroTitle, }}>
+                Upload Payment
+              </Button>
+            </Link>
+          </Box>
+        </Grid>
+      </Grid>
+    </Container>
+  );
+};
+
+export default ClientPage;

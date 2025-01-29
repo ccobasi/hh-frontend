@@ -1,0 +1,41 @@
+[
+    {
+        "id":0,
+        "status": "Applied",
+        "date":"Applied on Jan 22",
+        "jobTitle":"Chinese Translator",
+        "rank":"",
+        "company":"Tech Troopsy",
+        "location":"Jurong East, Singapore",
+        "requirement":["Remote", "Contract"]
+    },
+    {
+        "id":1,
+        "status":"Not selected by employer",
+        "date":"Applied on Jan 09",
+        "jobTitle":"Frontend Developer",
+        "rank":"Junior Position",
+        "company":"PT Niriaba Digital Indonesia",
+        "location":"Kemang, South Jakarta",
+        "requirement":["1-3 years exp", "Freelance"]
+    },
+    {
+        "id":2,
+        "status":"Interview",
+        "date":"Applied on Dec 29",
+        "jobTitle":"Website Developer",
+        "rank":"",
+        "company":"Vergonis Studio",
+        "location":"Sydney, Australia",
+        "requirement":["3 months contract"]
+    }, {
+        "id":3,
+        "status":"Interview",
+        "date":"Applied on Dec 20",
+        "jobTitle":"UI/UX Designer",
+        "rank":"Senior",
+        "company":"Ministry of Banking Department",
+        "location":"jakarta",
+        "requirement":["Freelance","Contract"]
+    }
+  ]
