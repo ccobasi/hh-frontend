@@ -1,50 +1,51 @@
 import axios from "axios";
 import dayjs from "dayjs";
-import { jwtDecode } from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
-const token = localStorage.getItem("access")
-  ? JSON.parse(localStorage.getItem("access"))
-  : "";
+const baseURL = "https://ccobasi.pythonanywhere.com/user";
 
-const refresh_token = localStorage.getItem("refresh")
-  ? JSON.parse(localStorage.getItem("refresh"))
-  : "";
-
-const baseURL = "ccobasi.pythonanywhere.com/user";
 const axiosInstance = axios.create({
   baseURL: baseURL,
-  "Content-type": "application/json",
   headers: {
-    Authorization: localStorage.getItem("access") ? `Bearer ${token}` : null,
+    "Content-Type": "application/json",
   },
 });
 
+// Request Interceptor
 axiosInstance.interceptors.request.use(async (req) => {
+  const token = localStorage.getItem("access")
+    ? JSON.parse(localStorage.getItem("access"))
+    : null;
+  const refresh_token = localStorage.getItem("refresh")
+    ? JSON.parse(localStorage.getItem("refresh"))
+    : null;
+
   if (token) {
     req.headers.Authorization = `Bearer ${token}`;
     const user = jwtDecode(token);
     const isExpired = dayjs.unix(user.exp).diff(dayjs()) < 1;
+
     if (!isExpired) {
       return req;
-    } else {
+    }
+
+    try {
       const res = await axios.post(`${baseURL}/token/refresh/`, {
         refresh: refresh_token,
       });
-      console.log(res.data);
+
       if (res.status === 200) {
         localStorage.setItem("access", JSON.stringify(res.data.access));
         req.headers.Authorization = `Bearer ${res.data.access}`;
         return req;
-      } else {
-        const res = await axios.post(`${baseURL}/logout/`, {
-          refresh_token: refresh_token,
-        });
-        if (res.status === 200) {
-          localStorage.removeItem("access");
-          localStorage.removeItem("refresh");
-          localStorage.removeItem("user");
-        }
       }
+    } catch (error) {
+      console.error("Token refresh failed:", error);
+      // Handle token expiration gracefully
+      localStorage.removeItem("access");
+      localStorage.removeItem("refresh");
+      localStorage.removeItem("user");
+      window.location.href = "/sign-in"; // Redirect to login page
     }
   }
   return req;
@@ -71,7 +72,7 @@ export default axiosInstance;
 // const token = getTokenFromStorage("access");
 // const refresh_token = getTokenFromStorage("refresh");
 
-// const baseURL = "https://ccobasi.pythonanywhere.com/user"; // Added https for security
+// const baseURL = "https://https://ccobasi.pythonanywhere.com/user"; // Added https for security
 // const axiosInstance = axios.create({
 //   baseURL: baseURL,
 //   headers: {
